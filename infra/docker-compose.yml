@@ -8,7 +8,7 @@ services:
       - ./.env
 
   backend:
-    image: themasterid/foodgram_backend:latest
+    image: sergeynikal/foodgram_backend:latest
     restart: always
     volumes:
       - data_value:/app/data/
