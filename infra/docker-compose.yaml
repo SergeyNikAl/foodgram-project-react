@@ -37,6 +37,8 @@ services:
       - ../docs/openapi-schema.yml:/usr/share/nginx/html/api/docs/openapi-schema.yml
       - static_value:/var/html/static/
       - media_value:/var/html/media/
+    depends_on:
+      - backend
 
 volumes:
   postgres_data:
