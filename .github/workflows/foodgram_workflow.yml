@@ -37,15 +37,14 @@ jobs:
           - name: Push to DockerHub (backend)
             uses: docker/build-push-action@v2
             with:
-              context: backend/
-              file: ./backend/Dockerfile
+              context: backend
               push: true
-              tags: ${{ secrets.DOCKER_USERNAME }}/foodgram-backend:latest
+              tags: ${{ secrets.DOCKER_USERNAME }}/foodgram_backend:latest
 
           - name: Push to DockerHub (frontend)
             uses: docker/build-push-action@v2
             with:
-              context: frontend/
+              context: frontend
               push: true
               tags: ${{ secrets.DOCKER_USERNAME }}/foodgram_frontend:latest
 
@@ -64,7 +63,7 @@ jobs:
           script: |
             cd infra/
             sudo docker-compose stop
-            sudo docker-compose rm foodgram_backend
+            sudo docker-compose rm foodgram-backend
             sudo docker-compose rm foodgram_frontend
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/foodgram_backend:latest
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/foodgram_frontend:latest
