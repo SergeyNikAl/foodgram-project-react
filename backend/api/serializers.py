@@ -16,7 +16,7 @@ ERROR_DATA_VALIDATE = (
     'Не удается войти в систему с указанными учетными данными.'
 )
 EMPTY_EMAIL_OR_PASSWORD = 'Необходимо заполнить поля "email" и "password".'
-ERROR_UNIQUE_INGREDIENT = 'Ингредиент {value} уже добавлен'
+ERROR_UNIQUE_INGREDIENT = 'Ингредиент {value} уже добавлен.'
 ERROR_TAGS_FOR_INGREDIENT = 'Необходимо заполнить хотя бы один тэг для рецепта'
 NON_EXISTENT_TAG = 'Тэг {value} не найден.'
 
