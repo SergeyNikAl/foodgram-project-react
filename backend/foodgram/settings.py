@@ -27,9 +27,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "rest_framework",
+    "rest_framework.authtoken",
     'djoser',
-    'rest_framework',
-    'rest_framework.authtoken',
     'django_filters',
     'api.apps.ApiConfig',
     'recipes.apps.RecipesConfig',
@@ -113,6 +113,21 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+DJOSER = {
+    "LOGIN_FIELD": "email",
+    "SEND_ACTIVATION_EMAIL": False,
+    "HIDE_USERS": False,
+    "SERIALIZERS": {
+        "user": "api.serializers.CreateUserSerializer",
+        "current_user": "api.serializers.ListUserSerializer",
+    },
+    "PERMISSIONS": {
+        "user": ["rest_framework.permissions.IsAuthenticatedOrReadOnly"],
+        "user_list": ["rest_framework.permissions.IsAuthenticatedOrReadOnly"],
+        "token_create": ["rest_framework.permissions.AllowAny"],
+        "token_destroy": ["rest_framework.permissions.IsAuthenticated"],
+    },
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/

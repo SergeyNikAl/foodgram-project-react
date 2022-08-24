@@ -1,7 +1,5 @@
 from django.core.validators import MinValueValidator
 from django.db import models
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 
 from users.models import User
 from foodgram.settings import TEXT_SCOPE
@@ -19,19 +17,21 @@ AMOUNT_OF_INGREDIENTS = ('Минимальное колличество ингр
 
 class Ingredient(models.Model):
     name = models.CharField(
-        'Ингрдиент',
+        'Ингредиент',
         max_length=INGREDIENT_NAME_LENGTH,
+        blank=False,
     )
     measurement_unit = models.CharField(
         'Единицы измерения',
         max_length=INGREDIENT_MEASUREMENT_UNIT_LENGTH,
+        blank=False,
     )
 
     def __str__(self):
         return self.name
 
     class Meta:
-        ordering = ['name', ]
+        ordering = ['id', ]
         verbose_name = 'Ингредиент'
         verbose_name_plural = 'Ингредиенты'
 
@@ -57,6 +57,7 @@ class Tag(models.Model):
         return self.name[:TEXT_SCOPE]
 
     class Meta:
+        ordering = ['name']
         verbose_name = 'Тэг'
         verbose_name_plural = 'Тэги'
 
@@ -74,7 +75,7 @@ class Recipe(models.Model):
     )
     image = models.ImageField(
         'Изображение рецепта',
-        upload_to='static/recipe/',
+        upload_to='recipe/',
         blank=True,
         null=True,
     )
@@ -84,11 +85,11 @@ class Recipe(models.Model):
     ingredients = models.ManyToManyField(
         Ingredient,
         through='RecipeIngredients',
+        verbose_name='Ингредиент'
     )
     tags = models.ManyToManyField(
         Tag,
         verbose_name='Тэги',
-        related_name='recipes',
     )
     cooking_time = models.PositiveIntegerField(
         'Время приготовления (в минутах)',
@@ -144,23 +145,18 @@ class RecipeIngredients(models.Model):
 
 
 class Favorites(models.Model):
-    user = models.OneToOneField(
+    user = models.ForeignKey(
         User,
         verbose_name='Пользователь',
         on_delete=models.CASCADE,
-        null=True,
-        related_name='favorites',
+        related_name='favorite_user',
     )
-    recipe = models.ManyToManyField(
+    recipe = models.ForeignKey(
         Recipe,
         verbose_name='Избранный рецепт',
-        related_name='favorites',
+        on_delete=models.CASCADE,
+        related_name='favorite_recipe',
     )
-
-    @receiver(post_save, sender=User)
-    def create_favorite_recipe(sender, instance, created, **kwargs):
-        if created:
-            return RecipeIngredients.objects.create(user=instance)
 
     class Meta:
         verbose_name = 'Избранный рецепт'
@@ -168,23 +164,18 @@ class Favorites(models.Model):
 
 
 class ShoppingCart(models.Model):
-    user = models.OneToOneField(
+    user = models.ForeignKey(
         User,
         verbose_name='Пользователь',
         on_delete=models.CASCADE,
         related_name='shopping_cart',
-        null=True,
     )
-    recipe = models.ManyToManyField(
+    recipe = models.ForeignKey(
         Recipe,
         verbose_name='Рецепт',
+        on_delete=models.CASCADE,
         related_name='shopping_cart',
     )
-
-    @receiver(post_save, sender=User)
-    def create_shopping_cart(sender, instance, created, **kwargs):
-        if created:
-            return ShoppingCart.objects.create(user=instance)
 
     class Meta:
         verbose_name = 'Покупка'

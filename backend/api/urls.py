@@ -1,54 +1,23 @@
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
-from api.views import (
-    AddDeleteFollow,
-    AddDeleteFavorites,
-    AddDeleteShoppingCart,
-    AuthToken,
+from .views import (
     IngredientsViewSet,
     RecipesViewSet,
     TagsViewSet,
     UsersViewSet,
-    set_password
 )
 
-app_name = 'api'
+app_name = "api"
 
 router_v1 = DefaultRouter()
-router_v1.register('users', UsersViewSet)
-router_v1.register('tags', TagsViewSet)
-router_v1.register('ingredients', IngredientsViewSet)
-router_v1.register('recipes', RecipesViewSet)
-
+router_v1.register("tags", TagsViewSet, basename="tags")
+router_v1.register("users", UsersViewSet, basename="users")
+router_v1.register("recipes", RecipesViewSet, basename="recipes")
+router_v1.register("ingredients", IngredientsViewSet, basename="ingredients")
 
 urlpatterns = [
-     path(
-          'auth/token/login/',
-          AuthToken.as_view(),
-          name='login'
-     ),
-     path(
-          'users/set_password/',
-          set_password,
-          name='set_password'
-     ),
-     path(
-          'users/<int:user_id>/subscribe/',
-          AddDeleteFollow.as_view(),
-          name='subscribe'
-     ),
-     path(
-          'recipes/<int:recipe_id>/favorite/',
-          AddDeleteFavorites.as_view(),
-          name='favorite_recipe'
-     ),
-     path(
-          'recipes/<int:recipe_id>/shopping_cart/',
-          AddDeleteShoppingCart.as_view(),
-          name='shopping_cart'
-     ),
-     path('', include(router_v1.urls)),
-     path('', include('djoser.urls')),
-     path('auth/', include('djoser.urls.authtoken')),
+    path("", include(router_v1.urls)),
+    path("", include("djoser.urls")),
+    path("auth/", include("djoser.urls.authtoken")),
 ]
