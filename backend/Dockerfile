@@ -4,6 +4,6 @@ WORKDIR backend/
 
 COPY . .
 
-RUN pip install -r backend/reuirements.txt --no-cache-dir
+RUN pip3 install -r reuirements.txt --no-cache-dir
 
 CMD ["gunicorn", "foodrgam.wsgi:application", "--build", "0:8000"]
