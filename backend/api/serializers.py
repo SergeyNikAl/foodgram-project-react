@@ -17,7 +17,7 @@ from users.models import Follow, User
 from users.validators import UsernameValidation
 
 ERROR_TAGS_FOR_INGREDIENT = 'Необходимо заполнить хотя бы один тэг для рецепта'
-ERROR_UNIQUE_INGREDIENT = 'Ингдредиент {value} уже есть в рецепте.'
+ERROR_UNIQUE_INGREDIENT = 'Ингредиент {value} уже добавлен в рецепт'
 
 
 class CreateUserSerializer(UserCreateSerializer, UsernameValidation):
