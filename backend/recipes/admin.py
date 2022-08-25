@@ -1,23 +1,18 @@
 from django.contrib import admin
+from users.admin import EMPTY_VALUE
 
-from .models import (
-    Favorites, Ingredient, RecipeIngredients, Recipe, Tag, ShoppingCart
-)
-
-EMPTY_VALUE = '-пусто-'
+from .models import (AmountIngredients, Favorite, Ingredient, Recipe,
+                     ShoppingCart, Tag)
 
 
 class RecipeIngredientsAdmin(admin.StackedInline):
-    model = RecipeIngredients
-    autocomplete_fields = ('ingredient',)
+    model = AmountIngredients
+    autocomplete_fields = ('ingredients',)
 
 
 @admin.register(Recipe)
 class RecipeAdmin(admin.ModelAdmin):
-    list_display = (
-        'id', 'get_author', 'name', 'text',
-        'cooking_time', 'get_tags', 'pub_date', 'get_favorite_count'
-    )
+    list_display = ('id', 'name', 'text', 'cooking_time', 'pub_date',)
     search_fields = (
         'name', 'cooking_time',
         'author__username', 'ingredients__name'
@@ -26,29 +21,11 @@ class RecipeAdmin(admin.ModelAdmin):
     inlines = (RecipeIngredientsAdmin,)
     empty_value_display = EMPTY_VALUE
 
-    @admin.display(description='Ник пользователя')
-    def get_author(self, obj):
-        return obj.author.username
 
-    @admin.display(description='Тэги')
-    def get_tags(self, obj):
-        data = [tag.name for tag in obj.tags.all()]
-        return ', '.join(data)
-
-    @admin.display(description='В избранном')
-    def get_favorite_count(self, obj):
-        return obj.favorite_recipe.count()
-
-
-@admin.register(Favorites)
+@admin.register(Favorite)
 class FavoritesAdmin(admin.ModelAdmin):
-    list_display = (
-        'id', 'user', 'get_count')
+    list_display = ('id', 'user',)
     empty_value_display = EMPTY_VALUE
-
-    @admin.display(description='В избранных')
-    def get_count(self, obj):
-        return obj.recipe.count()
 
 
 @admin.register(Ingredient)
@@ -67,9 +44,5 @@ class TagAdmin(admin.ModelAdmin):
 
 @admin.register(ShoppingCart)
 class ShoppingCartAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'get_count')
+    list_display = ('id', 'user')
     empty_value_display = EMPTY_VALUE
-
-    @admin.display(description='В корзине')
-    def get_count(self, obj):
-        return obj.recipe.count()
