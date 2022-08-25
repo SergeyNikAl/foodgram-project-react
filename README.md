@@ -29,11 +29,24 @@ pip install -r backend/requirements.txt
 cd backend
 python manage.py runserver
 ```
-Загрузить предуставновленнуые данные по рецептам и тэгам:
+
+Создать базу данных:
 ```
 cd backend
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
+```
+
+Загрузить предуставновленнуые данные по рецептам и тэгам:
+```
 python manage.py csv_manager
 python manage.py tags_manager
+```
+
+Заупстить сервер:
+```
+python manage.py runserver
 ```
 
 Для запуска frontend(через bash):
@@ -44,5 +57,8 @@ python manage.py tags_manager
 cd infra
 docker-compose up --build
 ```
+
+Сервис будет доступен по адресу localhost/signup
+
 ## (Для работы на удаленном сервере при деплое)
 
