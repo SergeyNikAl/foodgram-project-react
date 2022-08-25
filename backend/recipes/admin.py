@@ -12,7 +12,9 @@ class RecipeIngredientsAdmin(admin.StackedInline):
 
 @admin.register(Recipe)
 class RecipeAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'text', 'cooking_time', 'pub_date',)
+    list_display = (
+        'id', 'name', 'text', 'cooking_time', 'pub_date', 'get_favorite_count'
+    )
     search_fields = (
         'name', 'cooking_time',
         'author__username', 'ingredients__name'
@@ -20,6 +22,10 @@ class RecipeAdmin(admin.ModelAdmin):
     list_filter = ('pub_date', 'tags',)
     inlines = (RecipeIngredientsAdmin,)
     empty_value_display = EMPTY_VALUE
+
+    @admin.display(description='В избранном')
+    def get_favorite_count(self, obj):
+        return obj.favorite.count()
 
 
 @admin.register(Favorite)
