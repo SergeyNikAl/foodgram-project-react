@@ -24,7 +24,7 @@ python -m pip install --upgrade pip
 pip install -r backend/requirements.txt
 ```
 
-# Для запуска локально:
+## Для запуска локально:
 ```
 cd backend
 python manage.py runserver
@@ -44,5 +44,5 @@ python manage.py tags_manager
 cd infra
 docker-compose up --build
 ```
-# (Для работы на удаленном сервере при деплое)
+## (Для работы на удаленном сервере при деплое)
 
