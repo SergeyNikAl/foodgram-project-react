@@ -1,12 +1,18 @@
 from django.contrib import admin
-from users.admin import EMPTY_VALUE
 
-from .models import (AmountIngredients, Favorite, Ingredient, Recipe,
-                     ShoppingCart, Tag)
+from .models import (
+    AmountIngredient,
+    Favorite,
+    Ingredient,
+    Recipe,
+    ShoppingCart,
+    Tag
+)
+from users.admin import EMPTY_VALUE
 
 
 class RecipeIngredientsAdmin(admin.StackedInline):
-    model = AmountIngredients
+    model = AmountIngredient
     autocomplete_fields = ('ingredients',)
 
 

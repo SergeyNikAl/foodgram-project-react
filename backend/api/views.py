@@ -4,21 +4,12 @@ from django.db.models import Sum
 from django.http import HttpResponse
 from django_filters.rest_framework import DjangoFilterBackend
 from djoser.views import UserViewSet
-from recipes.models import (
-    AmountIngredients,
-    Favorite,
-    Ingredient,
-    Recipe,
-    ShoppingCart,
-    Tag
-)
 from rest_framework import filters, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.exceptions import ValidationError
 from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
-from users.models import Follow, User
 
 from .filters import IngredientFilter, RecipeFilter
 from .pagination import LimitPageNumberPagination
@@ -32,6 +23,15 @@ from .serializers import (
     RecipeSerializer,
     TagSerializer
 )
+from recipes.models import (
+    AmountIngredient,
+    Favorite,
+    Ingredient,
+    Recipe,
+    ShoppingCart,
+    Tag
+)
+from users.models import Follow, User
 
 SUBSCRIBE_TO_YOURSELF = 'Нельзя подписаться на самого себя'
 NO_SUBSCRIPTION = 'Нельзя отписаться от автора, на которго вы не подписаны'
@@ -125,9 +125,6 @@ class RecipeViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
 
-    def perform_update(self, serializer):
-        serializer.save(author=self.request.user)
-
     def add_recipe(self, model, request, pk):
         recipe = get_object_or_404(Recipe, id=pk)
         if model.objects.filter(
@@ -186,13 +183,13 @@ class RecipeViewSet(viewsets.ModelViewSet):
         file_name = f'{user.username}_shopping_list.txt'
         if not user.shopping_cart.exists():
             return Response(status=HTTPStatus.BAD_REQUEST)
-        ingredients = AmountIngredients.objects.filter(
+        ingredients = AmountIngredient.objects.filter(
             recipe__shopping_cart__user=user
         ).values(
             'ingredients__name',
             'ingredients__measurement_unit',
         ).annotate(
-            amount=Sum('amount')
+            value=Sum('amount')
         ).order_by('ingredients__name')
         response = HttpResponse(
             content_type='text/plain',
@@ -203,7 +200,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
         for ingredient in ingredients:
             response.write(
                 f'{ingredient["ingredients__name"]} '
-                f'- {ingredient["amount"]} '
+                f'- {ingredient["value"]} '
                 f'{ingredient["ingredients__measurement_unit"]}\n'
             )
         return response

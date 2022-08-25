@@ -66,11 +66,6 @@ class Follow(models.Model):
         if self.user == self.author:
             raise ValidationError(SUBSCRIBE_TO_YOURSELF)
 
-    def __str__(self):
-        return (
-            f'Пользователь {self.user} подписан на {self.author}'
-        )
-
     class Meta:
         ordering = ['author', ]
         verbose_name = 'Подписчик'
@@ -80,4 +75,9 @@ class Follow(models.Model):
                 fields=('user', 'author'),
                 name='follow_user_author_constraint'
             ),
+        )
+
+    def __str__(self):
+        return (
+            f'Пользователь {self.user} подписан на {self.author}'
         )

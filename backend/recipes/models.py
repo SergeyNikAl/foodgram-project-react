@@ -31,13 +31,13 @@ class Tag(models.Model):
         unique=True,
     )
 
-    def __str__(self):
-        return self.name[:TEXT_SCOPE]
-
     class Meta:
         ordering = ['id', ]
         verbose_name = 'Тэг'
         verbose_name_plural = 'Тэги'
+
+    def __str__(self):
+        return self.name[:TEXT_SCOPE]
 
 
 class Ingredient(models.Model):
@@ -52,13 +52,13 @@ class Ingredient(models.Model):
         blank=False,
     )
 
-    def __str__(self):
-        return self.name
-
     class Meta:
         ordering = ['id', ]
         verbose_name = 'Ингредиент'
         verbose_name_plural = 'Ингредиенты'
+
+    def __str__(self):
+        return self.name
 
 
 class Recipe(models.Model):
@@ -82,7 +82,7 @@ class Recipe(models.Model):
     ingredients = models.ManyToManyField(
         Ingredient,
         verbose_name='Список ингредиентов',
-        through='AmountIngredients',
+        through='AmountIngredient',
         related_name='recipes',
     )
     tags = models.ManyToManyField(
@@ -103,16 +103,16 @@ class Recipe(models.Model):
         auto_now_add=True,
     )
 
-    def __str__(self):
-        return self.name[:TEXT_SCOPE]
-
     class Meta:
         ordering = ['-pub_date', ]
         verbose_name = 'Рецепт'
         verbose_name_plural = 'Рецепты'
 
+    def __str__(self):
+        return self.name[:TEXT_SCOPE]
 
-class AmountIngredients(models.Model):
+
+class AmountIngredient(models.Model):
     recipe = models.ForeignKey(
         Recipe,
         on_delete=models.CASCADE,
@@ -159,12 +159,12 @@ class Favorite(models.Model):
         related_name='favorite',
     )
 
-    def __str__(self):
-        return f'{self.recipe} добавлен в избранные пользователем {self.user}'
-
     class Meta:
         verbose_name = 'Избранный рецепт'
         verbose_name_plural = 'Избранные рецепты'
+
+    def __str__(self):
+        return f'{self.recipe} добавлен в избранные пользователем {self.user}'
 
 
 class ShoppingCart(models.Model):

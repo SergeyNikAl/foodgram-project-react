@@ -2,17 +2,18 @@ from django.db.models import F
 from django.shortcuts import get_object_or_404
 from djoser.serializers import UserCreateSerializer, UserSerializer
 from drf_extra_fields.fields import Base64ImageField
+from rest_framework import serializers
+
 from recipes.models import (
     AMOUNT_OF_INGREDIENTS,
     COCKING_TIME_MESSAGE,
-    AmountIngredients,
+    AmountIngredient,
     Favorite,
     Ingredient,
     Recipe,
     ShoppingCart,
     Tag
 )
-from rest_framework import serializers
 from users.models import Follow, User
 from users.validators import UsernameValidation
 
@@ -82,7 +83,7 @@ class IngredientCreateSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField()
 
     class Meta:
-        model = AmountIngredients
+        model = AmountIngredient
         fields = ('id', 'amount')
 
 
@@ -97,7 +98,7 @@ class ReadIngredientsRecipeSerializer(serializers.ModelSerializer):
     )
 
     class Meta:
-        model = AmountIngredients
+        model = AmountIngredient
         fields = ('id', 'name', 'measurement_unit', 'amount',)
 
 
@@ -136,7 +137,7 @@ class RecipeSerializer(serializers.ModelSerializer):
     @staticmethod
     def get_ingredients(obj):
         return ReadIngredientsRecipeSerializer(
-            AmountIngredients.objects.filter(recipe=obj),
+            AmountIngredient.objects.filter(recipe=obj),
             many=True
         ).data
 
@@ -165,13 +166,13 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
     def create_ingredients(ingredients, recipe):
         for ingredient in ingredients:
             amount = ingredient['amount']
-            if AmountIngredients.objects.filter(
+            if AmountIngredient.objects.filter(
                     recipe=recipe,
                     ingredients=get_object_or_404(
                         Ingredient, id=ingredient['id'])
             ).exists():
                 amount += F('amount')
-            AmountIngredients.objects.update_or_create(
+            AmountIngredient.objects.update_or_create(
                 recipe=recipe,
                 ingredients=get_object_or_404(
                     Ingredient, id=ingredient['id']
@@ -197,7 +198,7 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
         """
         ingredients = validated_data.pop('ingredients')
         tags = validated_data.pop('tags')
-        AmountIngredients.objects.filter(recipe=recipe).delete()
+        AmountIngredient.objects.filter(recipe=recipe).delete()
         self.create_ingredients(ingredients, recipe)
         recipe.tags.set(tags)
         return super().update(recipe, validated_data)
