@@ -1,11 +1,7 @@
 # Продуктовый помощник Foodgram
-
-![foodgram_workflow](https://github.com/SergeyNikAl/foodgram-project-react/actions/workflows/foodgram_workflow.yml/badge.svg)
-
-
 ### Описание
 Сервис, на котором пользователи будут публиковать рецепты, добавлять чужие рецепты в избранное и подписываться на публикации других авторов. Сервис «Список покупок» позволит пользователям создавать список продуктов, которые нужно купить для приготовления выбранных блюд.
-
+(Изменения для удаленного сервера, в том числе и БД будут реализованы при деплое)
 ### Стек технологий:
 - Python
 - Django
@@ -54,9 +50,9 @@ python manage.py runserver
 ```
 
 Для запуска frontend(через bash):
-- запустить bash;
-- найти директорию проекта foodgram-project-react;
-- пройти в директорию infra.
+- запустить bash
+- найти директорию проекта foodgram-project-react
+- пройти в директорию infra
 ```
 cd infra
 docker-compose up --build
@@ -64,5 +60,5 @@ docker-compose up --build
 
 Сервис будет доступен по адресу localhost/signup
 
-
+## (Для работы на удаленном сервере при деплое)
 

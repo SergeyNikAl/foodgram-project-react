@@ -13,7 +13,6 @@ djangorestframework==3.12.4
 djangorestframework-simplejwt==4.8.0
 djoser==2.1.0
 drf-base64==2.0
-drf-extra-fields==3.4.0
 flake8==5.0.4
 flake8-broken-line==0.5.0
 flake8-isort==4.2.0
