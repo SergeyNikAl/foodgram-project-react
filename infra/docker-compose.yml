@@ -12,8 +12,8 @@ services:
     image: sergeynikal/foodgram_backend:latest
     restart: always
     volumes:
-      - static_value:/backend/static/
-      - media_value:/backend/media/
+      - static_value:/app/static/
+      - media_value:/app/media/
     depends_on:
       - db
     env_file:
@@ -39,7 +39,6 @@ services:
     restart: always
     depends_on:
       - backend
-      - frontend
 
 volumes:
   db:
