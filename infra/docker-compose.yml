@@ -19,6 +19,13 @@ services:
     env_file:
       - ./.env
 
+  frontend:
+    image: sergeynikal/foodgram_frontend:latest
+    volumes:
+      - ../frontend/:/app/result_build/
+    depends_on:
+      - db
+
   nginx:
     image: nginx:1.21.3-alpine
     ports:
@@ -32,13 +39,7 @@ services:
     restart: always
     depends_on:
       - backend
-
-  frontend:
-    image: sergeynikal/foodgram_frontend:latest
-    volumes:
-      - ../frontend/:/app/result_build/
-    depends_on:
-      - nginx
+      - frontend
 
 volumes:
   static_value:
