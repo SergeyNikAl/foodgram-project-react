@@ -39,9 +39,3 @@ services:
     restart: always
     depends_on:
       - backend
-
-volumes:
-  db:
-  result_build:
-  static_value:
-  media_value:
