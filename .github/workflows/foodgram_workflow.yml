@@ -62,9 +62,9 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
-            sudo docker stop $(sudo docker ps -a -q)
-            sudo docker-compose rm backend
-            sudo docker-compose rm frontend
+            sudo docker stop
+            sudo docker-compose rm ${{ secrets.DOCKER_USERNAME }}/backend
+            sudo docker-compose rm ${{ secrets.DOCKER_USERNAME }}/frontend
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/foodgram_backend:latest
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/foodgram_frontend:latest
             touch .env
