@@ -20,7 +20,7 @@ services:
       - ./.env
 
   frontend:
-    image: sergeynikal/foodgram_front:latest
+    image: sergeynikal/foodgram_frontend:latest
     volumes:
       - ../frontend/:/app/result_build/
     depends_on:
