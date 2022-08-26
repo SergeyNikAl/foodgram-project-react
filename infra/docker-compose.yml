@@ -44,4 +44,3 @@ services:
 volumes:
   static_value:
   media_value:
-  db:
