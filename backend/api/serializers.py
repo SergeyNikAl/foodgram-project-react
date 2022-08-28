@@ -1,7 +1,10 @@
+import re
+
 from django.shortcuts import get_object_or_404
 from djoser.serializers import UserCreateSerializer, UserSerializer
 from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
 
 from recipes.models import (
     AMOUNT_OF_INGREDIENTS,
@@ -18,6 +21,8 @@ from users.validators import UsernameValidation
 
 ERROR_TAGS_FOR_INGREDIENT = 'Необходимо заполнить хотя бы один тэг для рецепта'
 ERROR_UNIQUE_INGREDIENT = 'Ингредиент {value} уже добавлен в рецепт'
+USERNAME_SYMBOLS = re.compile(r'[\w.@+-@./+-]+')
+INVALID_USERNAME_SYMBOLS = 'Недопустимые символы: {value}'
 
 
 class CreateUserSerializer(UserCreateSerializer, UsernameValidation):
@@ -30,6 +35,19 @@ class CreateUserSerializer(UserCreateSerializer, UsernameValidation):
         fields = (
             'email', 'password', 'username', 'first_name', 'last_name',
         )
+
+    def validate_username(self, value):
+        if not re.match(USERNAME_SYMBOLS, value):
+            raise ValidationError(
+                INVALID_USERNAME_SYMBOLS.format(
+                    value=[
+                        symbol for symbol in value if symbol not in ''.join(
+                            re.findall(USERNAME_SYMBOLS, value)
+                        )
+                    ]
+                )
+            )
+        return value
 
 
 class ListUserSerializer(UserSerializer):
