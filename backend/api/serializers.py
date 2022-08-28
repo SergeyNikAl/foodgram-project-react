@@ -30,24 +30,17 @@ class CreateUserSerializer(UserCreateSerializer, UsernameValidation):
     Сериализатор для регистрации пользователей.
     """
 
+    username = serializers.CharField(
+        style={'input_type': 'username'},
+        write_only=True,
+        validators=UsernameValidation
+    )
+
     class Meta:
         model = User
         fields = (
             'email', 'password', 'username', 'first_name', 'last_name',
         )
-
-    def validate_username(self, value):
-        if not re.match(USERNAME_SYMBOLS, value):
-            raise ValidationError(
-                INVALID_USERNAME_SYMBOLS.format(
-                    value=[
-                        symbol for symbol in value if symbol not in ''.join(
-                            re.findall(USERNAME_SYMBOLS, value)
-                        )
-                    ]
-                )
-            )
-        return value
 
 
 class ListUserSerializer(UserSerializer):
