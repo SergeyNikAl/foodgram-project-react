@@ -25,12 +25,6 @@ class CreateUserSerializer(UserCreateSerializer, UsernameValidation):
     Сериализатор для регистрации пользователей.
     """
 
-    username = serializers.CharField(
-        style={'input_type': 'username'},
-        write_only=True,
-        validators=UsernameValidation
-    )
-
     class Meta:
         model = User
         fields = (
