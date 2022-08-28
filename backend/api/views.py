@@ -154,11 +154,11 @@ class RecipeViewSet(viewsets.ModelViewSet):
         methods=['POST', 'DELETE'],
         permission_classes=(IsAuthenticated,)
     )
-    def favorite(self, request, id=None):
+    def favorite(self, request, pk=None):
         return self.add_recipe(
-            Favorite, request, id
+            Favorite, request, pk
         ) if request.method == 'POST' else self.delete_recipe(
-            Favorite, request, id
+            Favorite, request, pk
         )
 
     @action(
@@ -166,11 +166,11 @@ class RecipeViewSet(viewsets.ModelViewSet):
         methods=['POST', 'DELETE'],
         permission_classes=(IsAuthenticated,)
     )
-    def shopping_cart(self, request, id):
+    def shopping_cart(self, request, pk):
         return self.add_recipe(
-            ShoppingCart, request, id
+            ShoppingCart, request, pk
         ) if request.method == 'POST' else self.delete_recipe(
-            ShoppingCart, request, id
+            ShoppingCart, request, pk
         )
 
     @action(
