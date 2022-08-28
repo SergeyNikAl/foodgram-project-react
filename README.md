@@ -54,8 +54,8 @@ python manage.py runserver
 ```
 
 Для запуска frontend(через bash):
-- запустить bash;
-- найти директорию проекта foodgram-project-react;
+- запустить bash
+- найти директорию проекта foodgram-project-react
 - пройти в директорию infra
 ```
 cd infra
