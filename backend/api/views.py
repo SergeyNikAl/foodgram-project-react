@@ -180,7 +180,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
     )
     def download_shopping_cart(self, request):
         user = request.user
-        file_name = f'{user.username}_shopping_list.txt'
+        file_name = 'shopping_list.txt'
         if not user.shopping_cart.exists():
             return Response(status=HTTPStatus.BAD_REQUEST)
         ingredients = AmountIngredient.objects.filter(
