@@ -154,11 +154,11 @@ class RecipeViewSet(viewsets.ModelViewSet):
         methods=['POST', 'DELETE'],
         permission_classes=(IsAuthenticated,)
     )
-    def favorite(self, request, pk=None):
+    def favorite(self, request, id=None):
         return self.add_recipe(
-            Favorite, request, pk
+            Favorite, request, id
         ) if request.method == 'POST' else self.delete_recipe(
-            Favorite, request, pk
+            Favorite, request, id
         )
 
     @action(
@@ -166,11 +166,11 @@ class RecipeViewSet(viewsets.ModelViewSet):
         methods=['POST', 'DELETE'],
         permission_classes=(IsAuthenticated,)
     )
-    def shopping_cart(self, request, pk):
+    def shopping_cart(self, request, id):
         return self.add_recipe(
-            ShoppingCart, request, pk
+            ShoppingCart, request, id
         ) if request.method == 'POST' else self.delete_recipe(
-            ShoppingCart, request, pk
+            ShoppingCart, request, id
         )
 
     @action(
@@ -199,7 +199,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
         response.write('Список продуктов к покупке:\n')
         for ingredient in ingredients:
             response.write(
-                f'{ingredient["ingredients__name"]} '
+                f'- {ingredient["ingredients__name"]} '
                 f'- {ingredient["value"]} '
                 f'{ingredient["ingredients__measurement_unit"]}\n'
             )
