@@ -35,9 +35,6 @@ class User(AbstractUser, UsernameValidation):
         blank=True,
         null=True
     )
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
-    EMAIL_FIELD = 'email'
 
     class Meta:
         ordering = ['username', ]
