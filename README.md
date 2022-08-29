@@ -10,7 +10,6 @@
 - Python
 - Django
 - Django Rest Framework
-  (Дописать для удаленного сервера)
 ---
 
 # Порядок запуска
