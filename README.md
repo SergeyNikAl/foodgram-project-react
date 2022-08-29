@@ -10,8 +10,7 @@
 - Python
 - Django
 - Django Rest Framework
--
---
+---
 
 # Порядок запуска
 ## Запуск проекта локально
@@ -114,10 +113,7 @@ scp nginx.conf <username>@<host>:/home/<username>/nginx.conf
     - Проект будет доступен по вашему IP или доменному имени(если создано)
 
 ## Проект доступен
-- Проект запущен и доступен по [адресу](http://coocking.ddns.net/signin)
-- Админ панель (http://coocking.ddns.net/admin)
+- Проект запущен и доступен по http://coocking.ddns.net/signin
+- Админ панель http://coocking.ddns.net/admin
 - Админ логин: admin1
 - Админ пароль: admin1
-
-
-
