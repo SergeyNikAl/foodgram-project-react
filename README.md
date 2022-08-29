@@ -110,7 +110,7 @@ scp nginx.conf <username>@<host>:/home/<username>/nginx.conf
     ```
     sudo docker-compose exec backend python manage.py createsuperuser
     ```
-    - Проект будет доступен по вашему IP или доменному имени(если создано)
+    - Проект будет доступен по вашему IP или доменному имени(если создано).
 
 ## Проект доступен
 - Проект запущен и доступен по http://coocking.ddns.net/signin
