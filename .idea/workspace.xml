@@ -2,23 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a81e1e3-a891-4596-a9db-5b50d7f65809" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/media/recipe/19d0405c-9a34-40c1-9518-a48394174735.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/media/recipe/9df7943b-5dc6-465a-bc81-d5a82523d016.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/media/recipe/b1b15e0e-7868-454d-b671-4b22aef499e4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/media/recipe/b8fdc6c7-98af-4d63-ab37-2c9a3cc78b06.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/media/recipe/cc44ce52-5354-454e-a990-70b7a8e56441.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/media/recipe/d464da8a-7f1e-4ed8-9f27-219ae672d6a6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/media/recipe/eedf4edf-cc04-4656-9602-28b44fb88cbc.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/recipes/migrations/0003_auto_20220901_1119.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/foodgram-project-react.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/foodgram-project-react.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/api/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/api/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/recipes/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/recipes/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/recipes/migrations/0002_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/recipes/migrations/0002_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/recipes/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/recipes/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/users/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/users/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/users/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/users/validators.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/media/recipe/19d0405c-9a34-40c1-9518-a48394174735.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/media/recipe/9df7943b-5dc6-465a-bc81-d5a82523d016.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/media/recipe/b1b15e0e-7868-454d-b671-4b22aef499e4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/media/recipe/b8fdc6c7-98af-4d63-ab37-2c9a3cc78b06.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/media/recipe/cc44ce52-5354-454e-a990-70b7a8e56441.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/media/recipe/d464da8a-7f1e-4ed8-9f27-219ae672d6a6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/media/recipe/eedf4edf-cc04-4656-9602-28b44fb88cbc.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/recipes/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/recipes/migrations/0002_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/recipes/migrations/0003_auto_20220901_1119.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/users/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infra/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/infra/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infra/nginx.conf" beforeDir="false" afterPath="$PROJECT_DIR$/infra/nginx.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infra/serializers.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,6 +95,8 @@
       <workItem from="1662011851362" duration="7675000" />
       <workItem from="1662019676963" duration="4035000" />
       <workItem from="1662023772213" duration="25000" />
+      <workItem from="1662023799573" duration="795000" />
+      <workItem from="1662024645322" duration="661000" />
     </task>
     <servers />
   </component>

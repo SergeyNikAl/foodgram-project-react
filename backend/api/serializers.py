@@ -1,8 +1,10 @@
+import re
+
 from django.shortcuts import get_object_or_404
 from djoser.serializers import UserCreateSerializer, UserSerializer
 from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
-from rest_framework.validators import UniqueTogetherValidator
+from rest_framework.validators import UniqueTogetherValidator, UniqueValidator
 from pprint import pprint
 
 from recipes.models import (
@@ -17,6 +19,8 @@ from recipes.models import (
 )
 from users.models import Follow, User
 
+USERNAME_SYMBOLS = re.compile(r'[\w.@+-@./+-]+')
+INVALID_USERNAME_SYMBOLS = 'Недопустимые символы: {value}'
 ERROR_TAGS_FOR_INGREDIENT = 'Необходимо заполнить хотя бы один тэг для рецепта'
 ERROR_UNIQUE_INGREDIENT = 'Ингредиент(ы) "{value}" уже добавлен(ы) в рецепт'
 
@@ -240,6 +244,7 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
             recipe,
             context={'request': self.context.get('request')}
         ).data
+
 
 class RecipeForFollowersSerializer(serializers.ModelSerializer):
     """

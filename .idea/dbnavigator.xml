@@ -28,7 +28,7 @@
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="544d3a50-7845-4cfa-b555-a540a646343a">
+    <connection id="20ed56c9-f5e9-4b1a-99c2-700628ef0362">
       <console name="Connection" type="STANDARD" schema="information_schema" session="Main" />
     </connection>
   </component>
@@ -36,7 +36,7 @@
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="544d3a50-7845-4cfa-b555-a540a646343a" />
+    <connection id="20ed56c9-f5e9-4b1a-99c2-700628ef0362" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
@@ -67,7 +67,7 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="544d3a50-7845-4cfa-b555-a540a646343a" active="true" signed="true">
+      <connection id="20ed56c9-f5e9-4b1a-99c2-700628ef0362" active="true" signed="true">
         <database>
           <name value="Connection" />
           <description value="" />
