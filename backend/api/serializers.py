@@ -4,8 +4,7 @@ from django.shortcuts import get_object_or_404
 from djoser.serializers import UserCreateSerializer, UserSerializer
 from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
-from rest_framework.validators import UniqueTogetherValidator, UniqueValidator
-from pprint import pprint
+from rest_framework.validators import UniqueTogetherValidator
 
 from recipes.models import (
     AMOUNT_OF_INGREDIENTS,
@@ -219,7 +218,6 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
         """
         Создание рецепта.
         """
-        pprint(validated_data)
         tags_data = validated_data.pop('tags')
         ingredients_data = validated_data.pop('ingredients')
         image = validated_data.pop('image')
