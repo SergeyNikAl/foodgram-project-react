@@ -67,7 +67,8 @@ class Recipe(models.Model):
         User,
         on_delete=models.CASCADE,
         related_name='recipes',
-        verbose_name='Автор'
+        verbose_name='Автор',
+        null=True
     )
     name = models.CharField(
         'Наименование рецепта',
@@ -97,7 +98,8 @@ class Recipe(models.Model):
             MinValueValidator(
                 1, message=COCKING_TIME_MESSAGE
             ),
-        ]
+        ],
+        null=True
     )
     pub_date = models.DateTimeField(
         'Дата публикации рецепта',

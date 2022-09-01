@@ -10,6 +10,7 @@
 - Python
 - Django
 - Django Rest Framework
+- PosgreSQL
 ---
 
 # Порядок запуска

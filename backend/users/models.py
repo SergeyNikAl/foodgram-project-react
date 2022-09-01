@@ -1,9 +1,10 @@
 from django.contrib.auth.models import AbstractUser
 from django.core.exceptions import ValidationError
+from django.core.validators import RegexValidator
 from django.db import models
 
-from .validators import UsernameValidation
 
+VALID_USERNAME = 'Введено некорректное значение поля "username"'
 EMAIL_LENGTH = 254
 FIRST_NAME_LENGTH = 150
 LAST_NAME_LENGTH = 150
@@ -12,11 +13,14 @@ USERNAME_LENGTH = 150
 SUBSCRIBE_TO_YOURSELF = 'Нельзя подписаться на самого себя'
 
 
-class User(AbstractUser, UsernameValidation):
+class User(AbstractUser):
     username = models.CharField(
         'Ник пользователя',
         max_length=USERNAME_LENGTH,
         unique=True,
+        validators=(RegexValidator(
+            regex=r'^[\w.@+-]+\Z', message=VALID_USERNAME
+        ),)
     )
     email = models.EmailField(
         'Электронная почта',
