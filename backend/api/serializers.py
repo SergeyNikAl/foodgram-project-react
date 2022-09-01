@@ -18,8 +18,6 @@ from recipes.models import (
 )
 from users.models import Follow, User
 
-USERNAME_SYMBOLS = re.compile(r'[\w.@+-@./+-]+')
-INVALID_USERNAME_SYMBOLS = 'Недопустимые символы: {value}'
 ERROR_TAGS_FOR_INGREDIENT = 'Необходимо заполнить хотя бы один тэг для рецепта'
 ERROR_UNIQUE_INGREDIENT = 'Ингредиент(ы) "{value}" уже добавлен(ы) в рецепт'
 
