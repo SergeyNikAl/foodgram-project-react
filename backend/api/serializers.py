@@ -90,6 +90,7 @@ class IngredientCreateSerializer(serializers.ModelSerializer):
 
     def validate_amount(self, value):
         if value < 1:
+            print(value)
             raise serializers.ValidationError(AMOUNT_OF_INGREDIENTS)
         return value
 
