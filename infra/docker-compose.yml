@@ -35,6 +35,10 @@ services:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
       - ../frontend/build:/usr/share/nginx/html/
       - ../docs/:/usr/share/nginx/html/api/docs/
+      - ssl_certificate:/etc/letsencrypt/live/coocking.ddns.net/fullchain.pem;
+      - ssl_certificate_key:/etc/letsencrypt/live/coocking.ddns.net/privkey.pem;
+      - ssl_certificate_options:/etc/letsencrypt/options-ssl-nginx.conf;
+      - ssl_dhparam:/etc/letsencrypt/ssl-dhparams.pem
       - static_value:/var/html/static/
       - media_value:/var/html/media/
     restart: always
@@ -43,7 +47,10 @@ services:
       - frontend
 
 volumes:
-  nginx:
+  ssl_certificate:
+  ssl_dhparam:
+  ssl_certificate_key:
+  ssl_certificate_options:
   db:
   result_build:
   static_value:
