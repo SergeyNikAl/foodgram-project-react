@@ -49,4 +49,3 @@ typing_extensions==4.3.0
 uritemplate==4.1.1
 urllib3==1.26.11
 zipp==3.8.1
-django-adminlte3==0.1.6

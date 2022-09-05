@@ -29,11 +29,13 @@ services:
   nginx:
     image: nginx:1.21.3-alpine
     ports:
+      - "443:443"
       - "80:80"
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
       - ../frontend/build:/usr/share/nginx/html/
       - ../docs/:/usr/share/nginx/html/api/docs/
+      - ssl_certificate:/etc/letsencrypt/
       - static_value:/var/html/static/
       - media_value:/var/html/media/
     restart: always
@@ -43,6 +45,7 @@ services:
 
 volumes:
   db:
+  ssl_certificate:
   result_build:
   static_value:
   media_value:
