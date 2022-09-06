@@ -34,7 +34,6 @@ services:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
       - ../frontend/build:/usr/share/nginx/html/
       - ../docs/:/usr/share/nginx/html/api/docs/
-      - etc-letsencrypt:/etc/letsencrypt/
       - static_value:/var/html/static/
       - media_value:/var/html/media/
     restart: always
@@ -42,18 +41,8 @@ services:
       - backend
       - frontend
 
-  certbot:
-    image: certbot/certbot
-    depends_on:
-      - nginx
-    container_name: certbot
-    volumes:
-      - etc-letsencrypt:/etc/letsencrypt
-    command: certonly --webroot --webroot-path=/var/www/html -- email cergey_nikulin@mail.ru --agree-tos --no-eff-email -d coocking.ddns.net
-
 volumes:
   db:
-  etc-letsencrypt:
   result_build:
   static_value:
   media_value:
