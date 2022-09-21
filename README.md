@@ -11,7 +11,7 @@
 - Django
 - Django Rest Framework
 - PosgreSQL
-- Docker.
+- Docker
 
 # Порядок запуска
 ## Запуск проекта локально
