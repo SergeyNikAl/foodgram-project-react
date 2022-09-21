@@ -71,14 +71,13 @@ class UsersViewSet(UserViewSet):
         if request.method == 'POST':
             if request.user.id == author.id:
                 raise ValidationError(SUBSCRIBE_TO_YOURSELF)
-            else:
-                serializer = FollowSerializer(
-                    Follow.objects.create(user=request.user, author=author),
-                    context={'request': request},
-                )
-                return Response(
-                    serializer.data, status=status.HTTP_201_CREATED
-                )
+            serializer = FollowSerializer(
+                Follow.objects.create(user=request.user, author=author),
+                context={'request': request},
+            )
+            return Response(
+                serializer.data, status=status.HTTP_201_CREATED
+            )
         elif request.method == 'DELETE':
             if Follow.objects.filter(
                     user=request.user, author=author
@@ -87,11 +86,10 @@ class UsersViewSet(UserViewSet):
                     user=request.user, author=author
                 ).delete()
                 return Response(status=status.HTTP_204_NO_CONTENT)
-            else:
-                return Response(
-                    {'errors': NO_SUBSCRIPTION},
-                    status=status.HTTP_400_BAD_REQUEST,
-                )
+            return Response(
+                {'errors': NO_SUBSCRIPTION},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
 
 
 class TagViewSet(viewsets.ModelViewSet):

@@ -20,4 +20,4 @@ class Command(BaseCommand):
                 Ingredient.objects.get_or_create(
                     name=name,
                     measurement_unit=measurement_unit)
-        self.stdout.write(self.style.SUCCESS('Все ингридиенты загружены!'))
+        self.stdout.write(self.style.SUCCESS('Ингредиенты добавлены'))
